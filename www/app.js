@@ -450,8 +450,10 @@ function renderTripExpenses() {
   });
 
   travelers.forEach(name => {
-    balances[name] -= share;
-  });
+  balances[name] = Number(
+    (balances[name] - share).toFixed(2)
+  );
+});
 
   const balanceHTML = travelers.map(name => `
     <div class="activity-card">
