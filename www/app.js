@@ -3,11 +3,29 @@ const $ = id => document.getElementById(id);
 
 const STORAGE = "travelmate_v4_data";
 
-let data = JSON.parse(localStorage.getItem(STORAGE) || "{}");
+function readStored(key, fallback) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key));
+    return value ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
 
-let trips = Array.isArray(data.trips) ? data.trips : [];
-let expenses = Array.isArray(data.expenses) ? data.expenses : [];
-let checklist = Array.isArray(data.checklist) ? data.checklist : [];
+let data = readStored(STORAGE, {});
+
+let trips = Array.isArray(data.trips)
+  ? data.trips
+  : readStored("tm_trips", []);
+
+let expenses = Array.isArray(data.expenses)
+  ? data.expenses
+  : readStored("tm_expenses", []);
+
+let checklist = Array.isArray(data.checklist)
+  ? data.checklist
+  : [];
+
 
 let currentTrip = null;
 let map = null;
