@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#101827">
-  <title>TravelMate</title>
+  <title>TravelMate V3.1</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
         <h1>TravelMate <span>✈</span></h1>
         <p class="subtitle" id="welcome">Every trip has a story.</p>
       </div>
-      <button id="themeBtn" aria-label="Change theme">☀</button>
+      <button id="themeBtn">☀</button>
     </header>
 
     <nav>
@@ -34,6 +35,11 @@
         </div>
         <h2>My journeys</h2>
         <div id="tripPreview"></div>
+        <h3>Data protection</h3>
+        <p class="muted">Keep a copy of your journeys and expenses.</p>
+        <button id="backupBtn">Export backup ↓</button>
+        <button id="restoreBtn">Restore backup ↑</button>
+        <input type="file" id="restoreFile" accept=".json,application/json" hidden>
       </section>
 
       <section id="trips" class="panel hidden">
@@ -58,17 +64,23 @@
         <button id="backBtn">← Back</button>
         <h2 id="detailTitle">Trip</h2>
         <p id="detailInfo"></p>
-        <h3>Itinerary</h3>
+
+        <h3>Destinations</h3>
+        <div id="cityList"></div>
+        <button id="addCityBtn" class="primary">＋ Add city</button>
+
+        <h3>Daily itinerary</h3>
         <div id="dayList"></div>
         <button id="addDayBtn" class="primary">＋ Add activity</button>
+
         <h3>Trip expenses</h3>
         <div id="tripExpenses"></div>
+        <button id="tripExpenseBtn" class="primary">＋ Add trip expense</button>
       </section>
     </main>
 
-    <footer>TravelMate V3 · Your journey companion</footer>
+    <footer>TravelMate V3.1 · Your journey companion</footer>
   </div>
-
   <script src="app.js"></script>
 </body>
 </html>
