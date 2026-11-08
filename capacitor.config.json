@@ -1,0 +1,6 @@
+{
+  "appId": "com.travelmate.app",
+  "appName": "TravelMate",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
