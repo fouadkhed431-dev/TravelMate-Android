@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>TravelMate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <p class="eyebrow">YOUR JOURNEY, ORGANIZED</p>
+        <h1>TravelMate <span>✈</span></h1>
+        <p class="subtitle" id="welcome">Every trip has a story.</p>
+      </div>
+      <button id="themeBtn" aria-label="Change theme">☀</button>
+    </header>
+
+    <nav>
+      <button class="active" data-tab="home">Home</button>
+      <button data-tab="trips">My Trips</button>
+      <button data-tab="expenses">Expenses</button>
+      <button id="langBtn">عربي</button>
+    </nav>
+
+    <main>
+      <section id="home" class="panel">
+        <div class="hero">
+          <p>READY FOR YOUR NEXT ADVENTURE?</p>
+          <h2>Explore more.<br>Worry less.</h2>
+          <button id="newTripBtn" class="primary">＋ Create a trip</button>
+        </div>
+        <h2>My journeys</h2>
+        <div id="tripPreview"></div>
+      </section>
+
+      <section id="trips" class="panel hidden">
+        <div class="section-head">
+          <h2>My trips</h2>
+          <button id="addTripBtn" class="primary">＋ New trip</button>
+        </div>
+        <div id="tripList"></div>
+      </section>
+
+      <section id="expenses" class="panel hidden">
+        <h2>Travel expenses</h2>
+        <div class="stat">
+          <span>Total expenses</span>
+          <strong id="totalExpenses">0</strong>
+        </div>
+        <div id="expenseList"></div>
+        <button id="addExpenseBtn" class="primary">＋ Add expense</button>
+      </section>
+
+      <section id="detail" class="panel hidden">
+        <button id="backBtn">← Back</button>
+        <h2 id="detailTitle">Trip</h2>
+        <p id="detailInfo"></p>
+        <h3>Itinerary</h3>
+        <div id="dayList"></div>
+        <button id="addDayBtn" class="primary">＋ Add activity</button>
+        <h3>Trip expenses</h3>
+        <div id="tripExpenses"></div>
+      </section>
+    </main>
+
+    <footer>TravelMate V3 · Your journey companion</footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
