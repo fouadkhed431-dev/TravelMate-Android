@@ -67,7 +67,16 @@ function normalize() {
     name: t.name || "My trip",
     cities: Array.isArray(t.cities) ? t.cities :
       (t.destination ? [t.destination] : []),
-    activities: Array.isArray(t.activities) ? t.activities : [],
+    activities: Array.isArray(t.activities)
+  ? t.activities.map(a => ({
+      ...a,
+      id: a.id || uid(),
+      name: a.name || "Untitled activity",
+      day: String(a.day || "Day 1"),
+      time: String(a.time || ""),
+      city: String(a.city || "")
+    }))
+  : [],
     travelers: Array.isArray(t.travelers) ? t.travelers :
       (Array.isArray(t.travelersList) ? t.travelersList : ["Traveler 1"])
   }));
