@@ -77,8 +77,11 @@ function normalize() {
       city: String(a.city || "")
     }))
   : [],
-    travelers: Array.isArray(t.travelers) ? t.travelers :
-      (Array.isArray(t.travelersList) ? t.travelersList : ["Traveler 1"])
+    travelers: Array.isArray(t.travelers) && t.travelers.length
+  ? t.travelers
+  : (Array.isArray(t.travelersList) && t.travelersList.length
+      ? t.travelersList
+      : ["Traveler 1"])
   }));
 
   expenses = expenses.map(e => ({
