@@ -1,0 +1,7 @@
+/* TravelMate V6 — cohesive, responsive additive styling */
+.v6-card{transition:box-shadow .18s ease,transform .18s ease}
+.v6-card:focus-within{box-shadow:0 10px 28px rgba(25,45,80,.10)}
+.v6-btn{cursor:pointer}
+.v6-btn:active{transform:scale(.98)}
+.v6-modal-bg{backdrop-filter:blur(4px)}
+.v6-modal input:focus,.v6-modal textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
