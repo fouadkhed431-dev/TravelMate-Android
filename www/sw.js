@@ -1,5 +1,5 @@
-const CACHE="travelmate-v71-shell";
-const CORE=["./","./index.html","./style.css","./v5-upgrade.css","./v6-ultimate.css","./v61-upgrade.css","./v7-ultimate.css","./app.js","./v5-upgrade.js","./v5-edit-modal.js","./v6-ultimate.js","./v61-upgrade.js","./v7-ultimate.js","./v71-upgrade.js","./manifest.webmanifest","./travelmate-icon.svg"];
+const CACHE="travelmate-v8-shell";
+const CORE=["./","./index.html","./style.css","./v5-upgrade.css","./v6-ultimate.css","./v61-upgrade.css","./v7-ultimate.css","./app.js","./v5-upgrade.js","./v5-edit-modal.js","./v6-ultimate.js","./v61-upgrade.js","./v7-ultimate.js","./v71-upgrade.js","./v8-ultimate.js","./manifest.webmanifest","./travelmate-icon.svg"];
 self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener("fetch",event=>{
