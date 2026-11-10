@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101827">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="Your complete travel companion">
   <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="travelmate-icon-192.png">
   <link rel="stylesheet" href="v61-upgrade.css">
   <link rel="stylesheet" href="v6-ultimate.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="v5-upgrade.css">
   <link rel="stylesheet" href="v7-ultimate.css">
+  <link rel="stylesheet" href="v10-ultimate.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <title>TravelMate V9 Ultimate</title>
+  <title>TravelMate V10 Ultimate</title>
+  <style>.brand-icon{background:#fff!important;border:1px solid #e7e7e7;overflow:hidden}.brand-icon img{width:100%;height:100%;object-fit:contain;border-radius:13px}</style>
 </head>
 <body>
   <div class="app">
     <header class="topbar">
-      <div class="brand"><div class="brand-icon">✈</div><div><h1>TravelMate</h1><p id="welcome">Your journey, beautifully organized.</p></div></div>
+      <div class="brand"><div class="brand-icon"><img src="travelmate-icon-192.png" alt="TravelMate falcon"></div><div><h1>TravelMate</h1><p id="welcome">Your journey, beautifully organized.</p></div></div>
       <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">☀</button>
     </header>
     <main>
@@ -72,7 +75,7 @@
         <div class="settings-card"><label for="languageSelect">App language</label><select id="languageSelect"><option value="en">English</option><option value="ar">العربية</option></select></div>
         <div class="settings-card"><label for="currencySelect">Currency</label><select id="currencySelect"><option value="EGP">EGP — Egyptian Pound</option><option value="USD">USD — US Dollar</option><option value="EUR">EUR — Euro</option><option value="RUB">RUB — Russian Ruble</option></select></div>
         <div class="settings-card"><h3>Data protection</h3><p>Keep a backup of your trips and expenses.</p><button id="backupBtn" class="secondary full-btn">↓ Export backup</button><button id="restoreBtn" class="secondary full-btn">↑ Restore backup</button><input type="file" id="restoreFile" accept=".json,application/json" hidden></div>
-        <div class="settings-card"><h3>About TravelMate</h3><p>TravelMate V9 Ultimate · Your journey companion</p></div>
+        <div class="settings-card"><h3>About TravelMate</h3><p>TravelMate V10 Ultimate · Your journey companion</p></div>
       </section>
     </main>
     <nav class="bottom-nav">
@@ -82,7 +85,7 @@
       <button class="nav-item" data-page="expenses"><span>▤</span><small>Expenses</small></button>
       <button class="nav-item" data-page="settings"><span>⚙</span><small>More</small></button>
     </nav>
-    <footer>TravelMate V9 Ultimate · Made for explorers</footer>
+    <footer>TravelMate V10 Ultimate · Made for explorers</footer>
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="app.js"></script>
@@ -94,6 +97,7 @@
   <script src="v71-upgrade.js"></script>
   <script src="v8-ultimate.js"></script>
   <script src="v9-ultimate.js"></script>
+  <script src="v10-ultimate.js"></script>
   <script>
     if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
       window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));

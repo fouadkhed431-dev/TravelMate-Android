@@ -1,18 +1,14 @@
 {
-  "name": "TravelMate V7 Ultimate",
+  "name": "TravelMate V10 Ultimate",
   "short_name": "TravelMate",
   "description": "Your complete travel companion",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#101827",
-  "theme_color": "#101827",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
-    {
-      "src": "travelmate-icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    {"src":"travelmate-icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"travelmate-icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
   ]
 }

@@ -1,12 +1,5 @@
-const CACHE="travelmate-v9-shell";
-const CORE=["./","./index.html","./style.css","./v5-upgrade.css","./v6-ultimate.css","./v61-upgrade.css","./v7-ultimate.css","./app.js","./v5-upgrade.js","./v5-edit-modal.js","./v6-ultimate.js","./v61-upgrade.js","./v7-ultimate.js","./v71-upgrade.js","./v8-ultimate.js","./v9-ultimate.js","./manifest.webmanifest","./travelmate-icon.svg"];
+const CACHE="travelmate-v10-shell";
+const CORE=["./","./index.html","./style.css","./v5-upgrade.css","./v6-ultimate.css","./v61-upgrade.css","./v7-ultimate.css","./v10-ultimate.css","./app.js","./v5-upgrade.js","./v5-edit-modal.js","./v6-ultimate.js","./v61-upgrade.js","./v7-ultimate.js","./v71-upgrade.js","./v8-ultimate.js","./v9-ultimate.js","./v10-ultimate.js","./manifest.webmanifest","./travelmate-icon-192.png","./travelmate-icon-512.png","./travelmate-falcon-sketch.png"];
 self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener("fetch",event=>{
-  const req=event.request;
-  if(req.method!=="GET" || new URL(req.url).origin!==self.location.origin)return;
-  event.respondWith(caches.match(req).then(hit=>hit||fetch(req).then(res=>{
-    if(res&&res.ok){const copy=res.clone();caches.open(CACHE).then(c=>c.put(req,copy));}
-    return res;
-  }).catch(()=>caches.match("./index.html"))));
-});
+self.addEventListener("fetch",event=>{const req=event.request;if(req.method!=="GET"||new URL(req.url).origin!==self.location.origin)return;event.respondWith(caches.match(req).then(hit=>hit||fetch(req).then(res=>{if(res&&res.ok){const copy=res.clone();caches.open(CACHE).then(c=>c.put(req,copy));}return res;}).catch(()=>caches.match("./index.html"))));});
