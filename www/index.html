@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="v5-upgrade.css">
   <link rel="stylesheet" href="v7-ultimate.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <title>TravelMate V8 Ultimate</title>
+  <title>TravelMate V9 Ultimate</title>
 </head>
 <body>
   <div class="app">
@@ -72,7 +72,7 @@
         <div class="settings-card"><label for="languageSelect">App language</label><select id="languageSelect"><option value="en">English</option><option value="ar">العربية</option></select></div>
         <div class="settings-card"><label for="currencySelect">Currency</label><select id="currencySelect"><option value="EGP">EGP — Egyptian Pound</option><option value="USD">USD — US Dollar</option><option value="EUR">EUR — Euro</option><option value="RUB">RUB — Russian Ruble</option></select></div>
         <div class="settings-card"><h3>Data protection</h3><p>Keep a backup of your trips and expenses.</p><button id="backupBtn" class="secondary full-btn">↓ Export backup</button><button id="restoreBtn" class="secondary full-btn">↑ Restore backup</button><input type="file" id="restoreFile" accept=".json,application/json" hidden></div>
-        <div class="settings-card"><h3>About TravelMate</h3><p>TravelMate V8 Ultimate · Your journey companion</p></div>
+        <div class="settings-card"><h3>About TravelMate</h3><p>TravelMate V9 Ultimate · Your journey companion</p></div>
       </section>
     </main>
     <nav class="bottom-nav">
@@ -82,7 +82,7 @@
       <button class="nav-item" data-page="expenses"><span>▤</span><small>Expenses</small></button>
       <button class="nav-item" data-page="settings"><span>⚙</span><small>More</small></button>
     </nav>
-    <footer>TravelMate V8 Ultimate · Made for explorers</footer>
+    <footer>TravelMate V9 Ultimate · Made for explorers</footer>
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="app.js"></script>
@@ -93,6 +93,7 @@
   <script src="v7-ultimate.js"></script>
   <script src="v71-upgrade.js"></script>
   <script src="v8-ultimate.js"></script>
+  <script src="v9-ultimate.js"></script>
   <script>
     if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
       window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
