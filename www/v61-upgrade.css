@@ -1,0 +1,15 @@
+/* TravelMate V6.1 — editor refinements */
+.v61-backdrop{position:fixed;inset:0;z-index:100010;background:rgba(10,18,32,.62);display:flex;align-items:flex-end;justify-content:center;padding:10px;backdrop-filter:blur(3px)}
+.v61-dialog{width:min(100%,580px);max-height:92dvh;overflow:auto;background:var(--surface,#fff);color:var(--text,#172033);border-radius:22px;padding:18px;box-shadow:0 20px 60px #0005}
+.v61-dialog h2{font-size:19px;margin:0 0 14px}
+.v61-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.v61-field{display:grid;gap:5px;min-width:0;font-size:12px;font-weight:700;color:var(--muted,#64748b)}
+.v61-field.wide{grid-column:1/-1}
+.v61-field input,.v61-field textarea{width:100%;box-sizing:border-box;min-height:45px;border:1px solid var(--border,#dbe2ec);border-radius:11px;padding:10px 11px;background:var(--bg,#fff);color:var(--text,#172033);font:inherit;font-size:16px}
+.v61-field textarea{min-height:82px}
+.v61-actions{display:flex;gap:9px;margin-top:15px}
+.v61-actions button{flex:1;border:0;border-radius:12px;padding:13px;font:inherit;font-weight:800}
+.v61-cancel{background:var(--surface2,#eef2f8);color:var(--text,#172033)}
+.v61-save{background:var(--accent,#3979e8);color:#fff}
+.v61-entry-actions{display:flex;gap:7px;margin-top:9px}
+@media(max-width:420px){.v61-grid{grid-template-columns:1fr}.v61-field.wide{grid-column:auto}}
