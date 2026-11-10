@@ -1,0 +1,9 @@
+/* TravelMate V7 responsive refinements */
+.v7-card{transition:box-shadow .18s ease}
+.v7-btn{cursor:pointer;transition:transform .15s ease,filter .15s ease}
+.v7-btn:active{transform:scale(.98)}
+.v7-modal input:focus,.v7-modal select:focus,.v7-modal textarea:focus,
+.v7-filter input:focus,.v7-filter select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.v7-expense h4{overflow-wrap:anywhere}
+.v7-trip-tools{direction:inherit}
+@media(prefers-reduced-motion:reduce){.v7-card,.v7-btn{transition:none}}
