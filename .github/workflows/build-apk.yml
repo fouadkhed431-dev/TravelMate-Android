@@ -11,7 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,7 +28,6 @@ jobs:
 
       - name: Install Android SDK packages
         run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
@@ -42,6 +40,9 @@ jobs:
       - name: Sync Android project
         run: npx cap sync android
 
+      - name: Prepare TravelMate V11 assets
+        run: npm run prepare:v11
+
       - name: Build APK
         run: |
           cd android
@@ -51,5 +52,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V3-APK
+          name: TravelMate-V11-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
