@@ -1,4 +1,3 @@
-
 name: Build TravelMate Android APK
 
 on:
@@ -37,11 +36,12 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
-      - name: Sync Android project
-        run: npx cap sync android
+      # IMPORTANT: Prepare web assets BEFORE Capacitor copies www into android/assets.
+      - name: Prepare TravelMate V12 web and native assets
+        run: npm run prepare:v12
 
-      - name: Prepare TravelMate V11 assets
-        run: npm run prepare:v11
+      - name: Sync Android platform
+        run: npx cap sync android
 
       - name: Build APK
         run: |
@@ -52,5 +52,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V11-APK
+          name: TravelMate-V12-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
