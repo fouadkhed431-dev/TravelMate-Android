@@ -1,56 +1,42 @@
 name: Build TravelMate Android APK
-
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-      - master
-
+    branches: [main, master]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
-
       - name: Install Android SDK packages
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
-
       - name: Install dependencies
         run: npm install
-
       - name: Add Android platform
         run: npx cap add android
-
-      # IMPORTANT: Prepare web assets BEFORE Capacitor copies www into android/assets.
-      - name: Prepare TravelMate V12 web and native assets
-        run: npm run prepare:v12
-
+      - name: Prepare TravelMate V14 web and native assets
+        run: npm run prepare:v14
       - name: Sync Android platform
         run: npx cap sync android
-
       - name: Build APK
         run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
-
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V12-APK
+          name: TravelMate-V14-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
