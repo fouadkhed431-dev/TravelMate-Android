@@ -25,6 +25,8 @@ jobs:
         run: npm run prepare:v14
       - name: Prepare TravelMate V15
         run: npm run prepare:v15
+      - name: Prepare TravelMate V16 launcher and splash
+        run: npm run prepare:v16
       - run: npx cap sync android
       - name: Build APK
         run: |
@@ -33,5 +35,5 @@ jobs:
           ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V15-APK
+          name: TravelMate-V16-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
