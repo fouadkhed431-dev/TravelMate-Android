@@ -1,6 +1,6 @@
 {
   "name": "travelmate-v3",
-  "version": "19.0.0",
+  "version": "19.1.0",
   "private": true,
   "scripts": {
     "build": "node scripts/copy-web.js",
@@ -8,7 +8,7 @@
     "prepare:v15": "node scripts/prepare-v15.js",
     "prepare:v16": "node scripts/prepare-v16.js",
     "prepare:v17": "node scripts/prepare-v17.js",
-    "prepare:v19": "node scripts/prepare-v19.js"
+    "prepare:v19": "node scripts/fix-v19-regex.js && node scripts/prepare-v19.js"
   },
   "dependencies": {
     "@capacitor/android": "^7.4.3",
