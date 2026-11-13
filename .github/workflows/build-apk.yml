@@ -24,10 +24,17 @@ jobs:
       - run: npm run prepare:v14
       - run: npm run prepare:v15
       - run: npm run prepare:v16
-      - name: Await V17 icon generation
-        run: sed -i 's/^  rebuildLauncher();/  await rebuildLauncher();/' scripts/prepare-v17.js
-      - run: npm run prepare:v17
-      - run: npm run prepare:v18
+      - name: Prepare V17 assets and OCR base
+        run: |
+          sed -i 's/^  rebuildLauncher();/  await rebuildLauncher();/' scripts/prepare-v17.js
+          npm run prepare:v17
+      - run: npm run prepare:v19
+      - name: Verify final launcher and OCR patch
+        run: |
+          test -s android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          test -s android/app/src/main/res/drawable-mdpi/ic_launcher_foreground.png
+          grep -q 'v19-ocr-raw' www/v71-upgrade.js
+          grep -q 'travelmate-v19-shell' www/sw.js
       - run: npx cap sync android
       - name: Build APK
         run: |
@@ -36,5 +43,5 @@ jobs:
           ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V18-APK
+          name: TravelMate-V19-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
