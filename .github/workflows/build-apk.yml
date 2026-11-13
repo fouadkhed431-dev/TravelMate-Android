@@ -21,14 +21,13 @@ jobs:
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "platform-tools" "platforms;android-35" "build-tools;35.0.0"
       - run: npm install
       - run: npx cap add android
-      - name: Prepare V14
-        run: npm run prepare:v14
-      - name: Prepare V15
-        run: npm run prepare:v15
-      - name: Prepare V16
-        run: npm run prepare:v16
-      - name: Prepare V17
-        run: npm run prepare:v17
+      - run: npm run prepare:v14
+      - run: npm run prepare:v15
+      - run: npm run prepare:v16
+      - name: Await V17 icon generation
+        run: sed -i 's/^  rebuildLauncher();/  await rebuildLauncher();/' scripts/prepare-v17.js
+      - run: npm run prepare:v17
+      - run: npm run prepare:v18
       - run: npx cap sync android
       - name: Build APK
         run: |
@@ -37,5 +36,5 @@ jobs:
           ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V17-APK
+          name: TravelMate-V18-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
