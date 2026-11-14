@@ -1,4 +1,4 @@
-name: Build TravelMate V22 OCR Repair APK
+name: Build TravelMate V23 OCR Merge Fix APK
 on:
   workflow_dispatch:
   push:
@@ -29,15 +29,17 @@ jobs:
           sed -i 's/^  rebuildLauncher();/  await rebuildLauncher();/' scripts/prepare-v17.js
           npm run prepare:v17
       - run: npm run prepare:v21
-      - name: Prepare V22 multilingual OCR
+      - name: Prepare V22 multilingual OCR base
         run: npm run prepare:v22
+      - name: Apply V23 OCR merge and validation fix
+        run: node scripts/prepare-v23.js
       - name: Verify generated OCR and app assets
         run: |
           node --check www/v21-receipts.js
           grep -q "eng+tur" www/v21-receipts.js
           grep -q "eng+ara" www/v21-receipts.js
-          grep -q "createImageBitmap" www/v21-receipts.js
-          grep -qi "total" www/v21-receipts.js
+          grep -q "merged.raw" www/v21-receipts.js
+          grep -q "Amounts do not add up" www/v21-receipts.js
           grep -q 'src="v21-receipts.js"' www/index.html
           test -s android/app/src/main/res/mipmap-mdpi/ic_launcher.png
           test -s android/app/src/main/res/drawable-mdpi/ic_launcher_foreground.png
@@ -49,5 +51,5 @@ jobs:
           ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V22-OCR-Repair-APK
+          name: TravelMate-V23-OCR-Merge-Fix-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
