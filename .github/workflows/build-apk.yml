@@ -38,12 +38,14 @@ jobs:
         run: |
           set -euo pipefail
           node --check www/v21-receipts.js
+          echo '✓ JavaScript syntax valid'
           grep -Fq 'eng+tur' www/v21-receipts.js
           echo '✓ Turkish/English OCR worker present'
           grep -Fq 'eng+ara' www/v21-receipts.js
           echo '✓ Arabic/English OCR worker present'
-          grep -Fq 'merged.raw' www/v21-receipts.js
-          echo '✓ Multi-attempt OCR merge present'
+          grep -Fq "raw:parts.join" www/v21-receipts.js
+          grep -Fq 'const merged=' www/v21-receipts.js
+          echo '✓ Multi-attempt OCR merge implementation present'
           grep -Fq 'Amounts do not add up' www/v21-receipts.js
           echo '✓ Arithmetic validation present'
           grep -Fq 'src="v21-receipts.js"' www/index.html
