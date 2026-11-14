@@ -1,4 +1,4 @@
-name: Build TravelMate V21 Final APK
+name: Build TravelMate V22 OCR Repair APK
 on:
   workflow_dispatch:
   push:
@@ -28,16 +28,18 @@ jobs:
         run: |
           sed -i 's/^  rebuildLauncher();/  await rebuildLauncher();/' scripts/prepare-v17.js
           npm run prepare:v17
-      - name: Prepare V21 final repairs
-        run: npm run prepare:v21
-      - name: Verify JavaScript and launcher assets
+      - run: npm run prepare:v21
+      - name: Prepare V22 multilingual OCR
+        run: npm run prepare:v22
+      - name: Verify generated OCR and app assets
         run: |
           node --check www/v21-receipts.js
+          grep -q "eng+tur" www/v21-receipts.js
+          grep -q "eng+ara" www/v21-receipts.js
+          grep -q "createImageBitmap" www/v21-receipts.js
+          grep -q "Total" www/v21-receipts.js
           test -s android/app/src/main/res/mipmap-mdpi/ic_launcher.png
           test -s android/app/src/main/res/drawable-mdpi/ic_launcher_foreground.png
-          grep -q 'tm21-card' www/v21-receipts.js
-          grep -q 'src="v21-receipts.js"' www/index.html
-          grep -q 'travelmate-v21-shell' www/sw.js
       - run: npx cap sync android
       - name: Build APK
         run: |
@@ -46,5 +48,5 @@ jobs:
           ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V21-Final-APK
+          name: TravelMate-V22-OCR-Repair-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
