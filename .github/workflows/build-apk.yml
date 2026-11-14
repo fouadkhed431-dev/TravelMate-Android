@@ -1,4 +1,4 @@
-name: Build TravelMate V23 OCR Merge Fix APK
+name: Build TravelMate V24 Launcher Icon Fix
 on:
   workflow_dispatch:
   push:
@@ -38,29 +38,33 @@ jobs:
         run: |
           set -euo pipefail
           node --check www/v21-receipts.js
-          echo '✓ JavaScript syntax valid'
           grep -Fq 'eng+tur' www/v21-receipts.js
-          echo '✓ Turkish/English OCR worker present'
           grep -Fq 'eng+ara' www/v21-receipts.js
-          echo '✓ Arabic/English OCR worker present'
           grep -Fq "raw:parts.join" www/v21-receipts.js
           grep -Fq 'const merged=' www/v21-receipts.js
-          echo '✓ Multi-attempt OCR merge implementation present'
           grep -Fq 'Amounts do not add up' www/v21-receipts.js
-          echo '✓ Arithmetic validation present'
           grep -Fq 'src="v21-receipts.js"' www/index.html
-          echo '✓ Receipt module included in app page'
-          test -s android/app/src/main/res/mipmap-mdpi/ic_launcher.png || { echo 'Launcher mipmap missing'; exit 1; }
-          echo '✓ Launcher mipmap present'
-          test -s android/app/src/main/res/drawable-nodpi/ic_launcher_foreground.png || { echo 'Launcher foreground missing'; exit 1; }
-          echo '✓ Launcher foreground present'
-      - run: npx cap sync android
+          echo '✓ Existing app checks passed'
+      - name: Sync Capacitor Android project
+        run: npx cap sync android
+      - name: Rebuild launcher icons after Capacitor sync
+        run: node scripts/finalize-launcher.js
+      - name: Verify final launcher resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'android:icon="@mipmap/ic_launcher"' android/app/src/main/AndroidManifest.xml
+          grep -Fq 'android:roundIcon="@mipmap/ic_launcher_round"' android/app/src/main/AndroidManifest.xml
+          test -s android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+          test -s android/app/src/main/res/drawable-nodpi/ic_launcher_foreground.png
+          test -s android/app/src/main/res/drawable-nodpi/ic_launcher_monochrome.png
+          echo '✓ Final Android launcher resources verified'
       - name: Build APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew clean assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: TravelMate-V23-OCR-Merge-Fix-APK
+          name: TravelMate-V24-Launcher-Icon-Fix-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
