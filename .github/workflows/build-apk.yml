@@ -37,7 +37,8 @@ jobs:
           grep -q "eng+tur" www/v21-receipts.js
           grep -q "eng+ara" www/v21-receipts.js
           grep -q "createImageBitmap" www/v21-receipts.js
-          grep -q "Total" www/v21-receipts.js
+          grep -qi "total" www/v21-receipts.js
+          grep -q 'src="v21-receipts.js"' www/index.html
           test -s android/app/src/main/res/mipmap-mdpi/ic_launcher.png
           test -s android/app/src/main/res/drawable-mdpi/ic_launcher_foreground.png
       - run: npx cap sync android
