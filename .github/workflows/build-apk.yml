@@ -33,16 +33,25 @@ jobs:
         run: npm run prepare:v22
       - name: Apply V23 OCR merge and validation fix
         run: node scripts/prepare-v23.js
-      - name: Verify generated OCR and app assets
+      - name: Verify generated OCR module
+        shell: bash
         run: |
+          set -euo pipefail
           node --check www/v21-receipts.js
-          grep -q "eng+tur" www/v21-receipts.js
-          grep -q "eng+ara" www/v21-receipts.js
-          grep -q "merged.raw" www/v21-receipts.js
-          grep -q "Amounts do not add up" www/v21-receipts.js
-          grep -q 'src="v21-receipts.js"' www/index.html
-          test -s android/app/src/main/res/mipmap-mdpi/ic_launcher.png
-          test -s android/app/src/main/res/drawable-mdpi/ic_launcher_foreground.png
+          grep -Fq 'eng+tur' www/v21-receipts.js
+          echo '✓ Turkish/English OCR worker present'
+          grep -Fq 'eng+ara' www/v21-receipts.js
+          echo '✓ Arabic/English OCR worker present'
+          grep -Fq 'merged.raw' www/v21-receipts.js
+          echo '✓ Multi-attempt OCR merge present'
+          grep -Fq 'Amounts do not add up' www/v21-receipts.js
+          echo '✓ Arithmetic validation present'
+          grep -Fq 'src="v21-receipts.js"' www/index.html
+          echo '✓ Receipt module included in app page'
+          test -s android/app/src/main/res/mipmap-mdpi/ic_launcher.png || { echo 'Launcher mipmap missing'; exit 1; }
+          echo '✓ Launcher mipmap present'
+          test -s android/app/src/main/res/drawable-nodpi/ic_launcher_foreground.png || { echo 'Launcher foreground missing'; exit 1; }
+          echo '✓ Launcher foreground present'
       - run: npx cap sync android
       - name: Build APK
         run: |
